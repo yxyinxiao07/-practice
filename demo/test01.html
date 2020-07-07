@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang='en'>
+
+<head>
+  <meta charset='UTF-8'>
+  <title></title>
+</head>
+
+<body>
+  <div class="reg">
+    <h1>用户审核页面</h1>
+  </div>
+  <div id="task" style="display: none">
+    <li class="u-id fl">88</li>
+    <li class="u-img fl"><img src="imgs/1.jpg"></li>
+    <li class="flag"> <button class="btn">审核通过</button><button class="btn1">未通过</button></li>
+  </div>
+  <div class="content">
+    <ul class="u-table">
+      <li>用户ID</li>
+      <li>上传一卡通图片</li>
+      <li>操作</li>
+    </ul>
+    <ul id="task-list">
+    </ul>
+
+  </div>
+</body>
+<script>
+  function init() {
+    //获取用户Id以及用户对应的图片
+    $.get("data.json", function (datas) {
+      //如果请求成功，flag状态改变，按钮内容改变
+      if (datas.code == 1) {
+        var $goods = $("#task-list");
+        var taskData = datas.list;
+        for (var i = 0; i < taskData.length; i++) {
+          /*需要将数据传给build()*/
+          var item = build(taskData[i]);
+          $goods.append(item);
+        }
+      }
+    });
+  }
+  function build(datas) {
+    /*对data进行处理*/
+    var $html = $("#task");
+    console.log($html)
+    if (datas.length != 0) {
+      $html.find(".u-id").text(datas.uid);
+      var imgurl = "http://timeseller.fantasy512.cn/ddh/" + datas.imgurl
+      $html.find(".u-img img").attr("src", imgurl);
+    }
+    return $html.html();
+
+  }
+</script>
+
+</html>

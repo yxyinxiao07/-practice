@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>邮箱</title>
+</head>
+<script type="text/javascript" src="jquery-3.4.1.min.js"></script>
+<style>
+/* li{
+  
+} */
+</style>
+<body>
+  <div class="wrapper">
+    <label class="label">
+      <input id="email-input" type="text" placeholder="请输入邮件地址">
+    </label>
+    <ul id="email-sug-wrapper" class="email-sug"></ul>
+  </div>
+</body>
+<script type="text/javascript">
+  var input = document.getElementById('email-input');
+  var sug = document.getElementById('email-sug-wrapper');//提示框
+  var nowSelectTipIndex = 0;
+
+  // 判断按键
+  input.oninput = function (event) {
+    judgeKey(event);
+    // 获取用户输入，生成提示框中的提示内容，将提示内容添加到
+    // email-sug-wrapper中
+    var liText = createTips(xssProtect());
+    addTips(liText);
+    // 控制email-sug-wrapper的显示/隐藏状态
+    sugDisplayControl(xssProtect());
+  };
+  input.onkeydown = judge;
+
+  sug.onclick = function (event) {
+    var ev = event || window.event;
+    var target = ev.target || ev.srcElement;
+    if (target.nodeName.toLowerCase() === 'li' && target.click) {
+      input.value = decoding(target.innerHTML);
+      hidden();
+    }
+    input.focus();
+  };
+
+  // xss防御攻击，编码转码
+  function xssProtect() {
+    var text = getInput();
+    var temp = document.createElement('div');
+    (temp.textContent !== undefined) ? (temp.textContent = text) : (temp.innerText = text);
+    return temp.innerHTML;
+  }
+
+  // xss防御攻击，编码解码
+  function decoding(text) {
+    // 1.首先动态创建一个容器标签元素，如DIV
+    var temp = document.createElement("div");
+    // 2.然后将要转换的字符串设置为这个元素的innerHTML(ie，火狐，google都支持)
+    temp.innerHTML = text;
+    // 3.最后返回这个元素的innerText(ie支持)或者textContent(火狐，google支持)，
+    // 即得到经过HTML解码的字符串了。
+    var output = temp.innerText || temp.textContent;
+    temp = null;
+    return output;
+  }
+
+  // 获取文本中的内容
+  function getInput() {
+    // 拿到input输入框的输入内容trim后返回
+    var text = input.value,
+      myTrim = "";
+    if (text.length >= 1) {
+      myTrim = text.trim();
+    } return myTrim;
+  }
+
+  // 生成提示框
+  function createTips(content) {
+    var text = [];
+    // 邮箱后缀List参考
+    var postfixList = ['163.com', 'gmail.com', '126.com', 'qq.com', '263.net'];
+    // 遍历postfixList
+    if (content !== "")
+      if (content.indexOf('@') !== -1) {
+        var text1 = content.slice(0, content.indexOf('@')),
+          text2 = content.slice(content.indexOf('@') + 1);
+        var j = 0;
+        for (var i = 0; i < postfixList.length; i++) {
+          if (postfixList[i].indexOf(text2) !== -1
+            && postfixList[i].indexOf(text2) === 0
+          ) {
+            text[j] = text1 + '@' + postfixList[i];
+            j++;
+          }
+        }
+      }
+      else {
+        for (var x = 0; x < postfixList.length; x++) {
+          //  把用户输入和每一个postfix进行结合成为每一个Li
+          text[x] = content + '@' + postfixList[x];
+        }
+      }
+    // 返回生成的提示内容
+    return text;
+  }
+
+  // 移除旧的li列表
+  function removeLi() {
+    while (sug.hasChildNodes() && sug.firstChild != null) {
+      sug.removeChild(sug.firstChild);
+    }
+  }
+
+  // 向提示框中添加提示内容
+  function addTips(liText) {
+    // 删除上一次添加的li
+    removeLi();
+    // 将内容添加到email-sug-wrapper中
+    for (var j = 0; j < liText.length; j++) {
+      var li = document.createElement('li');
+      li.innerHTML = liText[j];
+      sug.appendChild(li);
+    }
+    var aLi = sug.querySelectorAll('li');
+    if (aLi.length > 0)
+      aLi[nowSelectTipIndex].className = "checked";
+  }
+
+  // 控制提示框是否显示
+  function sugDisplayControl(content) {
+    if (content === "" || content[0] === '@') {
+      // 隐藏提示框
+      hidden();
+    } else {
+      // 显示提示框
+      display();
+    }
+  }
+
+  // 隐藏提示框
+  function hidden() {
+    // 做具体隐藏提示框的操作
+    sug.style.display = 'none';
+  }
+
+  // 显示提示框
+  function display() {
+    // 做具体显示提示框的操作
+    sug.style.display = 'block';
+  }
+
+  // 重置选中状态
+  function removeDefault() {
+    nowSelectTipIndex = 0;
+  }
+
+  // 检测并重新设置
+  function judgeKey(event) {
+    var e = event || window.event || arguments.callee.caller.arguments[0];
+    if (e.keyCode !== 13 && e.keyCode !== 38 && e.keyCode !== 40) {
+      removeDefault();
+    }
+  }
+
+  // 判断四个特殊按键
+  function judge(event) {
+    var e = event || window.event || arguments.callee.caller.arguments[0];
+    var aLi = sug.querySelectorAll('li');
+    if (sug.style.display = 'block') {
+      if (e && e.keyCode === 27) { // 按 Esc
+        //要做的事情
+        input.select();
+      }
+      if (e && e.keyCode === 13) { // 按 enter
+        // 要做的事情
+        input.value = decoding(aLi[nowSelectTipIndex].innerHTML);
+        hidden();
+      }
+      if (e && e.keyCode === 38) {// up
+        // 要做的事情
+        e.preventDefault();
+        if (nowSelectTipIndex === 0) {
+          aLi[nowSelectTipIndex].className = "";
+          nowSelectTipIndex = aLi.length - 1;
+          aLi[nowSelectTipIndex].className = "checked";
+        }
+        else {
+          aLi[nowSelectTipIndex].className = "";
+          nowSelectTipIndex -= 1;
+          aLi[nowSelectTipIndex].className = "checked";
+        }
+      }
+      if (e && e.keyCode === 40) { // down
+        //要做的事情
+        if (nowSelectTipIndex === aLi.length - 1) {
+          aLi[nowSelectTipIndex].className = "";
+          nowSelectTipIndex = 0;
+          aLi[nowSelectTipIndex].className = "checked";
+        }
+        else {
+          aLi[nowSelectTipIndex].className = "";
+          nowSelectTipIndex += 1;
+          aLi[nowSelectTipIndex].className = 'checked';
+        }
+      }
+    }
+  }
+
+
+
+  //input框的聚焦
+  input.focus();
+</script>
+
+</html>

@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang='en'>
+
+<head>
+    <meta charset='UTF-8'>
+    <title></title>
+    <script src="jquery-3.4.1.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        a:link,
+        a:visited {
+            color: #FFF;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        #wrap {
+            width: 350px;
+            background: #FFF;
+            border: 12px solid #EEE;
+            border-radius: 10px;
+            margin: 10px auto 0;
+            padding: 5px 5px 4px;
+        }
+
+        #wrap dl {
+            overflow: hidden;
+            background: #7CF;
+        }
+
+        #wrap dt,
+        #wrap dd {
+            padding-left: 15px;
+            border-bottom: 1px solid #FFF;
+        }
+
+        #wrap dt {
+            cursor: pointer;
+            font-size: 14px;
+            background: #9C0;
+            line-height: 30px;
+            font: 700 14px/30px Tahoma;
+        }
+
+
+        #wrap dt.current {
+            background: #09F;
+        }
+
+        #wrap dd {
+            background: #7CF;
+            line-height: 25px;
+            font: 12px/25px Tahoma;
+        }
+    </style>
+
+    <script>
+        $(document).ready(function () {
+            $("dd").hide();
+            $("dt").click(function () {
+                if ($(this).attr("state") == "show") {
+                    $(this).removeClass("current");
+                    $(this).nextUntil("dt").hide(500);
+                    $(this).attr("state", "hide");
+                }
+                else {
+                    $(this).addClass("current");
+                    $(this).nextUntil("dt").show(500);
+                    $(this).attr("state", "show");
+                }
+            });
+        });       
+    </script>
+</head>
+
+<body>
+    <div id="wrap">
+        <dl class="dl">
+            <dt>第一课 (6)</dt>
+            <dd><a href="控制Div属性.html">1) 控制Div属性</a></dd>
+            <dd><a href="网页换肤.html">2) 网页换肤</a></dd>
+            <dd><a href="函数接收参数并弹出.html">3) 函数接收参数并弹出</a></dd>
+            <dd><a href="用循环将三个Div变成红色.html">4) 用循环将三个Div变成红色</a></dd>
+            <dd><a href="鼠标移入移出改变样式.html">5) 鼠标移入/移出改变样式</a></dd>
+            <dd><a href="记住密码提示框.html">6) 记住密码提示框</a></dd>
+            <dd><a href="邮箱.html">6) 邮箱提示框</a></dd>
+        </dl>
+        <dl>
+            <dt>第二课 (12)</dt>
+            <dd><a href="百度输入法.html">1) 百度输入法</a></dd>
+            <dd><a href="点击Div，显示其innerHTML.html">2) 点击Div，显示其innerHTML</a></dd>
+            <dd><a href="求出数组中所有数字的和.html">3) 求出数组中所有数字的和</a></dd>
+            <dd><a href="弹出层效果.html">4) 弹出层效果</a></dd>
+            <dd><a href="函数传参，改变Div任意属性的值.html">5) 函数传参，改变Div任意属性的值</a></dd>
+            <dd><a href="图片列表：鼠标移入移出改变图片透明度.html">6) 图片列表：鼠标移入/移出改变图片透明度</a></dd>
+            <dd><a href="简易选项卡.html">7) 简易选项卡</a></dd>
+            <dd><a href="简易JS年历.html">8) 简易JS年历</a></dd>
+            <dd><a href="单一按钮显示隐藏一播放列表收缩展开.html">9) 单一按钮显示/隐藏一播放列表收缩展开</a></dd>
+            <dd><a href="提示框效果.html">10) 提示框效果</a></dd>
+            <dd><a href="鼠标移过，修改图片路径.html">11) 鼠标移过，修改图片路径</a></dd>
+            <dd><a href="复选框（checkbox）全选全不选返选.html">12) 复选框（checkbox）全选/全不选/返选</a></dd>
+        </dl>
+        <dl>
+            <dt>第三课 (9)</dt>
+            <dd><a href="用typeof查看数据类型.html">1) 用typeof查看数据类型</a></dd>
+            <dd><a href="用parseInt解析数字，并求和.html">2) 用parseInt解析数字，并求和</a></dd>
+            <dd><a href="累加按钮，自加1.html">3) 累加按钮，自加1</a></dd>
+            <dd><a href="输入两个数字，比较大小.html">4) 输入两个数字，比较大小</a></dd>
+            <dd><a href="页面加载后累加，自加1.html">5) 页面加载后累加，自加1</a></dd>
+            <dd><a href="判断数字是否为两位数.html">6) 判断数字是否为两位数</a></dd>
+            <dd><a href="网页计算器.html">7) 网页计算器</a></dd>
+            <dd><a href="简易网页时钟.html">8) 简易网页时钟</a></dd>
+            <dd><a href="倒计时时钟（100秒）.html">9) 倒计时时钟（100秒）</a></dd>
+        </dl>
+        <dl>
+            <dt>第四课 (9)</dt>
+            <dd><a href="setTimeout应用.html">1) setTimeout应用</a></dd>
+            <dd><a href="自动播放一幻灯片效果.html">2) 自动播放一幻灯片效果</a></dd>
+            <dd><a href="自动改变方向一幻灯片效果.html">3) 自动改变方向一幻灯片效果</a></dd>
+            <dd><a href="agruments应用一求出函数参数的总合.html">4) agruments应用一求出函数参数的总合</a></dd>
+            <dd><a href="css函数一设置/读取对象的属性.html">5) css函数一设置/读取对象的属性</a></dd>
+            <dd><a href="当前输入框高亮显示.html">6) 当前输入框高亮显示</a></dd>
+            <dd><a href="数组练习：各种数组方法的使用.html">7) 数组练习：各种数组方法的使用</a></dd>
+            <dd><a href="事件练习：封装兼容性添加、删除事件的函数.html">8) 事件练习：封装兼容性添加、删除事件的函数</a></dd>
+            <dd><a href="星级评分系统.html">9) 星级评分系统</a></dd>
+        </dl>
+        <dl>
+            <dt>第五课 (8)</dt>
+            <dd><a href="模拟select控件.html">1) 模拟select控件</a></dd>
+            <dd><a href="点击页面，显示单击的坐标.html">2) 点击页面，显示单击的坐标</a></dd>
+            <dd><a href="用户按下键盘，显示keyCode.html">3) 用户按下键盘，显示keyCode</a></dd>
+            <dd><a href="阻止右键菜单（阻止默认事件）.html">4) 阻止右键菜单（阻止默认事件）</a></dd>
+            <dd><a href="跟随鼠标移动（大图展示）.html">5) 跟随鼠标移动（大图展示）</a></dd>
+            <dd><a href="自定义右键菜单.html">6) 自定义右键菜单</a></dd>
+            <dd><a href="用键盘控制Div.html">7) 用键盘控制Div</a></dd>
+            <dd><a href="Div闪烁.html">8) Div闪烁</a></dd>
+        </dl>
+        <dl>
+            <dt>第六课 (3)</dt>
+            <dd><a href="完美拖拽.html">1) 完美拖拽</a></dd>
+            <dd><a href="仿腾讯微博效果.html">2) 仿腾讯微博效果</a></dd>
+            <dd><a href="自定义多级右键菜单.html">3) 自定义多级右键菜单</a></dd>
+        </dl>
+        <dl>
+            <dt>第七课 (3)</dt>
+            <dd><a href="自动轮播广告（缓冲效果）.html">1) 自动轮播广告（缓冲效果）</a></dd>
+            <dd><a href="图片切换（Loading效果）.html">2) 图片切换（Loading效果）</a></dd>
+            <dd><a href="移动效果（按轨迹移动）.html">3) 移动效果（按轨迹移动）</a></dd>
+        </dl>
+        <dl>
+            <dt>第八课 (4)</dt>
+            <dd><a href="iPhone手机解锁效果.html">1) iPhone手机解锁效果</a></dd>
+            <dd><a href="自定义滚动条.html">2) 自定义滚动条</a></dd>
+            <dd><a href="拖拽一Clone.html">3) 拖拽一Clone</a></dd>
+            <dd><a href="拖拽并可以改变大小.html">4) 拖拽并可以改变大小</a></dd>
+        </dl>
+        <dl>
+            <dt>第九课 (3)</dt>
+            <dd><a href="仿苹果电脑任务栏菜单.html">1) 仿苹果电脑任务栏菜单</a></dd>
+            <dd><a href="拼图小游戏.html">2) 拼图小游戏</a></dd>
+            <dd><a href="模拟表单控件.html">3) 模拟表单控件</a></dd>
+        </dl>
+        <dl>
+            <dt>第十课 (14)</dt>
+            <dd><a href="为数组添加方法（求和，最大值）.html">1) 为数组添加方法（求和，最大值）</a></dd>
+            <dd><a href="自动轮播广告（面向对象版）.html">2) 自动轮播广告（面向对象版）</a></dd>
+            <dd><a href="运动框架（面向对象版）.html">3) 运动框架（面向对象版）</a></dd>
+            <dd><a href="照片墙一多实例演示（面向对象版）.html">4) 照片墙一多实例演示（面向对象版）</a></dd>
+            <dd><a href="拖拽库（面向对象版）.html">5) 拖拽库（面向对象版）</a></dd>
+            <dd><a href="无缝滚动（面向对象版）.html">6) 无缝滚动（面向对象版）</a></dd>
+            <dd><a href="延时加载（面向对象版）.html">7) 延时加载（面向对象版）</a></dd>
+            <dd><a href="仿腾讯游戏《英雄杀》官网Flash效果.html">8) 仿腾讯游戏《英雄杀》官网Flash效果</a></dd>
+            <dd><a href="百度有啊通栏展示效果.html">9) 百度有啊通栏展示效果</a></dd>
+            <dd><a href="放烟花效果（面向对象版.html">10) 放烟花效果（面向对象版）</a></dd>
+            <dd><a href="《穿越火线》官网导航菜单.html">11) 《穿越火线》官网导航菜单</a></dd>
+            <dd><a href="《百度风云榜》TAB切换.html">12) 《百度风云榜》TAB切换</a></dd>
+            <dd><a href="IBM官网导航条效果.html">13) IBM官网导航条效果</a></dd>
+            <dd><a href="面试题-动态生成表格.html">14) 面试题-动态生成表格</a></dd>
+        </dl>
+        <dl>
+            <dt>项目实例 (4)</dt>
+            <dd><a href="眼镜在线试戴.html">1) 眼镜在线试戴</a></dd>
+            <dd><a href="日历组件.html">2) 日历组件</a></dd>
+            <dd><a href="淘宝网-迷你登录.html">3) 淘宝网-迷你登录</a></dd>
+            <dd><a href="仿Google+ 游戏频道焦点图效果.html">4) 仿Google+ 游戏频道焦点图效果</a></dd>
+        </dl>
+        <dl>
+            <dt>YUI实例 (2)</dt>
+            <dd><a href="淘宝旅行通用日历组件.html">1) 淘宝旅行通用日历组件</a></dd>
+            <dd><a href="酒店价格日历.html">2) 酒店价格日历</a></dd>
+        </dl>
+        <dl>
+            <dt>KISSY实例 (6)</dt>
+            <dd><a href="KISSY版-酒店价格日历.html">1) KISSY版-酒店价格日历</a></dd>
+            <dd><a href="KISSY版-图片浏览组件.html">2) KISSY版-图片浏览组件</a></dd>
+            <dd><a href="酒店地图交通与周边.html">3) 酒店地图交通与周边</a></dd>
+            <dd><a href="多SKU酒店价格中心.html">4) 多SKU酒店价格中心</a></dd>
+            <dd><a href="多SKU门票价格中心.html">5) 多SKU门票价格中心</a></dd>
+            <dd><a href="新版-多SKU门票价格中心.html">6) 新版-多SKU门票价格中心</a></dd>
+        </dl>
+    </div>
+</body>
+
+</html>

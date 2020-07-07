@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang='en'>
+
+<head>
+    <meta charset='UTF-8'>
+    <title></title>
+    <style>
+        * {
+            margin: o;
+            padding: 0;
+        }
+
+        #container {
+            width: 330px;
+            height: 100px;
+            margin: 10px auto;
+        }
+
+        #container div {
+            width: 100px;
+            height: 100px;
+            float: left;
+            margin: 0 5px;
+            background: green;
+        }
+    </style>
+</head>
+
+<body>
+    <center><button>点击下方背景变成红色</button></center>
+    <div id="container">
+        <div></div>
+        <div></div>
+        <div></div>
+    </div>
+</body>
+<script>
+    var btn = document.getElementsByTagName("button")[0];
+    var divL = document.getElementById("container").getElementsByTagName("div");
+    btn.onclick = function () {
+        for (i = 0; i < divL.length; i++) {
+            divL[i].style.background = "red";
+        }
+    }
+</script>
+
+</html>

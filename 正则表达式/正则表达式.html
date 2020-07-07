@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang='en'>
+
+<head>
+    <meta charset='UTF-8'>
+    <title></title>
+</head>
+
+<body>
+    <div>
+        将字符串"abc123def456hash789"中相连的数找出来拼接成一个数组
+    </div>
+    <br>
+    用户名：<input type="text" name="" id="name"><br>
+    密码：<input type="text" name="" id="password"><br>
+    电话号码：<input type="text" name="" id="num"><br>
+    email：<input type="text" name="" id="email"><br>
+    <button onclick="show()">确认</button>
+    <script>
+        var string = "abc123def456hash789";
+        var re = /\d+/g;
+        console.log(string.match(re));
+
+        function show() {
+            var a =document.getElementById("name").value;
+            var b = document.getElementById("password").value;
+            var c = document.getElementById("num").value;
+            var d = document.getElementById("email").value;
+            var re1 = /^[0-9a-z-]{3,16}$/;
+            if (!re1.test(a)) {
+                alert('用户名只能输入3到16位数字字母以及-');
+            }
+            var re2 = /^[0-9a-z]{6,18}$/;
+            if (!re2.test(b)) {
+                alert('密码只能输入6到18位数字字母');
+            }
+            var re3 = /^(13[0-9]|14[5|7]|15[0|1|2|3|5|6|7|8|9]|18[0|1|2|3|5|6|7|8|9])\d{8}$/;
+            if (!re3.test(c)) {
+                alert('请输入正确号码格式');
+            }
+            var re4 = /^([a-z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$/;
+            if (!re4.test(d)) {
+                alert('请输入正确email格式');
+            }
+        }
+    </script>
+</body>
+
+</html>

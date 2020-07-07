@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang='en'>
+
+<head>
+    <meta charset='UTF-8'>
+    <title></title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .a {
+            width: 500px;
+            margin: auto;
+            text-align: center;
+        }
+
+        #b {
+            width: 100px;
+            height: 100px;
+            margin: 10px auto;
+            background: black;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="a">
+        <button onclick="widthChange()">变宽</button>
+        <button onclick="heightChange()">变高</button>
+        <button onclick="colorChange()">变色</button>
+        <button onclick="del()">隐藏</button>
+        <button onclick="reset()">重置</button>
+        <div id="b"></div>
+    </div>
+</body>
+
+<script>
+    // var b = document.getElementById("b");
+    // function widthChange() {
+    //     b.style.width = "200px";
+    // };
+    // function heightChange() {
+    //     b.style.height = "200px";
+    // };
+    // function colorChange() {
+    //     b.style.background = "red";
+    // };
+    // function del() {
+    //     b.style.display = "none";
+    // };
+    // function reset() {
+    //     b.style.width = "100px";
+    //     b.style.height = "100px";
+    //     b.style.background = "black";
+    //     b.style.display = "block";
+    // };
+
+    var changeStyle = function (elem, attr, value) {
+        elem.style[attr] = value
+    };
+    window.onload = function () {
+        var oBtn = document.getElementsByTagName("button");
+        var oDiv = document.getElementById("b");
+        var oAtt = ["width", "height", "background", "display", "display"];
+        var oVal = ["200px", "200px", "red", "none", "block"];
+
+        for (var i = 0; i < oBtn.length; i++) {
+            oBtn[i].index = i;
+            oBtn[i].onclick = function () {
+                this.index == oBtn.length - 1 && (oDiv.style.cssText = "");
+                changeStyle(oDiv, oAtt[this.index], oVal[this.index])
+            }
+        }
+    };
+</script>
+
+</html>
