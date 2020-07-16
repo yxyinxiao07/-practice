@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script src="js/jquery.min.js"></script>
+  <script type="text/javascript">
+    function getNews(url) {
+      let promise = new Promise((resolve, reject) => {
+        let xmlHttp = new XMLHttpRequest();
+        xmlHttp.onreadystatechange = function () {
+          if (xmlHttp.onreadystate === 4 && xmlHttp.status == 200) {
+            resolve(xmlHttp.responseText);
+          } else {
+            reject('暂无更新');
+          }
+          if (xmlHttp.onreadystate === 4) {
+            if (xmlHttp.status == 200) {
+              resolve(xmlHttp.responseText);
+            }
+          } else {
+            reject('暂无更新');
+          }
+        };
+        xmlHttp.open('GET', url);
+        xmlHttp.send();
+      })
+      return promise;
+    }
+    getNews('http://www.baidu.com').then((data) => {
+      console.log(data);
+      return getNews(url);
+    }, (error) => {
+      console.log(error);
+    })
+  </script>
+</body>
+</html>

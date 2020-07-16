@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>yuan</title>
+	<style>
+		/* border-radius 四个值 左上角，右上角，右下角，左下角 */
+		.circle1 {
+			/*圆形   宽高相等，弧度都为50%*/
+			width: 100px;
+			height: 100px;
+			background-color: brown;
+			border-radius: 50%;
+			-moz-border-radius: 50%;
+			-webkit-border-radius: 50%;
+
+			margin-top: 20px;
+		}
+
+		.circle2 {
+			/*半圆   高为宽两倍，左上左下/右上右下弧度都为50%*/
+			width: 100px;
+			height: 200px;
+			background-color: blueviolet;
+			border-radius: 100px 0px 0px 100px;
+			-moz-border-radius: 100px 0px 0px 100px;
+			-webkit-border-radius: 100px 0px 0px 100px;
+			/* border-radius: 0px 100px 100px 0px ; */
+
+			margin-top: 20px;
+		}
+
+		.circle3 {
+			/*1/4圆   宽高相等，其中一弧度为宽高长度其他为0*/
+			width: 100px;
+			height: 100px;
+			background-color: burlywood;
+			border-radius: 100px 0 0 0;
+			-moz-border-radius: 100px 0 0 0;
+			-webkit-border-radius: 100px 0 0 0;
+
+			margin-top: 20px;
+		}
+
+		.Oval {
+			/*椭圆形   宽高相等，其中一弧度为宽高长度其他为0*/
+			width: 200px;
+			height: 100px;
+			background-color: burlywood;
+			border-radius: 50%;
+			-moz-border-radius: 50%;
+			-webkit-border-radius: 50%;
+
+			margin-top: 20px;
+		}
+	</style>
+</head>
+<body>
+	<div class='circle1'></div>
+	<div class='circle2'></div>
+	<div class='circle3'></div>
+	<div class='Oval'></div>
+</body>
+</html>

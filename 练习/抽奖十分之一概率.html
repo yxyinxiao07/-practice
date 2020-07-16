@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="js/jquery.min.js"></script>
+</head>
+<body>
+  <p>点击按钮随机抽取数字（0-9），抽到数字6则中奖，十次必中一次，抽中后清零重新计算</p>
+  <div style="width: 200px;height: 100px;background-color: aqua;margin: 20px;" class="father">
+    <span id="num"></span>
+  </div>
+  <input type="button" style="margin-left: 80px;" class="start" value="抽奖">
+
+  <script type="text/javascript">
+    var span = document.getElementById("num");
+    var i = 0;
+    $('.start').click(function () {
+      i++;
+      var a = Math.floor(Math.random() * 10);
+      $('.start').attr('disabled', true).val('抽奖中');
+      // clearTimeout (timer);
+      if (i <= 9) {
+        var timer = setTimeout(() => {
+          if (a == 6) {
+            $('.start').attr('disabled', false).val('抽奖');
+            num.innerText = '第' + i + '次，您抽取的数字为' + a + ',恭喜您中奖了！';
+            return i = 0;
+          } else {
+            $('.start').attr('disabled', false).val('抽奖');
+            num.innerText = '第' + i + '次，您抽取的数字为' + a + ',您未中奖，再接再厉'
+          }
+        }, 1000);
+      } else if (i = 10) {
+        var timer = setTimeout(() => {
+          $('.start').attr('disabled', false).val('抽奖');
+          num.innerText = '第10次，您抽取的数字为6,恭喜您中奖了！';
+        }, 1000);
+        return i = 0;
+      }
+    })
+  </script>
+</body>
+</html>
